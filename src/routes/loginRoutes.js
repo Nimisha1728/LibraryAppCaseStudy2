@@ -11,27 +11,25 @@ function router(nav){
             title:'Library'
         });
     });
-
-    loginRouter.post('/',(req,res)=>{
-          var item={
-              email: req.body.email,
-              password: req.body.password
-          }
-          Userdata.findOne({
-              email: email,
-              password: password
-          },(err,user)=>{
-              if(err){
-                  console.log(err);
-                  return res.status(500).send();
-                  
-              }
-              if(!user){
-                  //return res.status(404).send();
-                  res.redirect('/login');
+   
+    loginRouter.post('/check',(req,res)=>{
+        
+        let {email, password} = req.body;
+        Userdata.findOne({email: email}, {password: password}, (err, userData) => {
+            if(!userData){
+                return res.status(404).redirect('/login');
+                //res.redirect('/login');
+            }
+            else if (!err) {
+                
+                return res.status(200).redirect('/');
+            }
+              if(!userData){
+                  return res.status(404).redirect('/login');
+                  //res.redirect('/login');
               }
               else{
-                  res.redirect('/');
+                  res.status(401).send("invalid credentials");
               }
 
           })
