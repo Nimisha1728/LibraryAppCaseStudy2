@@ -3,6 +3,8 @@ const adminRouter=express.Router();
 const Bookdata=require('../model/bookdata');
 const Authordata=require('../model/authordata');
 
+
+
 function router(nav){
 
     adminRouter.get('/',(req,res)=>{
@@ -17,6 +19,7 @@ adminRouter.post('/add',(req,res)=>{
       author: req.body.author,
       genre: req.body.genre,
       image: req.body.image,
+    //image:req.file.filename
       
     }
   var book=Bookdata(item);
@@ -55,6 +58,7 @@ adminRouter.post('/update/:id',(req,res)=>{
     author: req.body.author,
     genre: req.body.genre,
     image: req.body.image
+    
     
   }
   

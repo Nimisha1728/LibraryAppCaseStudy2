@@ -15,7 +15,7 @@ const nav=[
         link:'/login',name:'Login'
     },
     {
-        link:'/admin/add-book',name:'Add Books'
+        link:'/admin',name:'Add Books'
     }
     
 ];
